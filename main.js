@@ -1,26 +1,39 @@
-// const { foo } = require('./helpers/helpers')
-//
-//
-// console.log('_________main.js_________');
-//
-// console.log(__dirname);
-// console.log(__filename);
-// console.log(process.cwd())
-//
-// foo()
-
-const readline = require('readline')
+// hw-1
+// знайти модуль http
+// запустити на server
+const http = require('node:http');
 
 const foo = async () => {
-const rlInterface = readline.createInterface({
-    input:process.stdin,
-    output:process.stdout
-});
 
-rlInterface.question('What is your name?', (name) => {
-    console.log(`Hello ${name}`);
-    rlInterface.close()
-})
+// Create a local server to receive data from
+    const server = http.createServer((req, res) => {
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        const url = req.url;
+        if (url === '/about'){
+            switch (req.method) {
+                case'GET':
+                return res.end(JSON.stringify({
+                    data:'About Page'
+                }));
+                case 'POST':
+                    return res.end(JSON.stringify({
+                        data:'About Page'
+                    }))
+            }
+
+        }
+        if (url === '/contact'){
+            return res.end(JSON.stringify({
+                data:'Contact Page'
+            }))
+        }
+
+        res.end(JSON.stringify({
+            data: 'Hello World!',
+        }));
+    });
+
+    server.listen(8000);
 
 }
 void foo()
