@@ -70,7 +70,7 @@
   },
   {
     "id": 13,
-    "name": "Mila Mila",
+    "name": "Mila Long",
     "email": "mila@gmail.com",
     "password": "mla433443dd"
   },
@@ -85,5 +85,23 @@
     "name": "Timofiy",
     "email": "timofiy@gmail.com",
     "password": "mla44321223dd"
+  },
+  {
+    "id": 16,
+    "name": "Sergey",
+    "email": "Sergey@gmail.com",
+    "password": "mla4432143234rr"
+  },
+  {
+    "id": 17,
+    "name": "Bob",
+    "email": "bob@gmail.com",
+    "password": "mla4432143234rr"
+  },
+  {
+    "id": 18,
+    "name": "Marina",
+    "email": "marina@gmail.com",
+    "password": "mla4432143234rr"
   }
 ]
