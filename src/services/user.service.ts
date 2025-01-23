@@ -24,14 +24,14 @@ class UserService {
     }
     return await userRepository.create(dto);
   }
-  public async getUserById(userId: number): Promise<IUser> {
+  public async getUserById(userId: string): Promise<IUser> {
     const user = await userRepository.getById(userId);
     if (!user) {
       throw new ApiError("User not found", 404);
     }
     return user;
   }
-  public async updateUser(userId: number, dto: IUserDto): Promise<IUser> {
+  public async updateUser(userId: string, dto: IUserDto): Promise<IUser> {
     if (!dto.name || dto.name.length < 3) {
       throw new ApiError(
         "Name is required and should be minimum 3 symbols",
@@ -53,7 +53,7 @@ class UserService {
     }
     return await userRepository.updateUser(userId, dto);
   }
-  public async deleteUser(userId: number): Promise<any> {
+  public async deleteUser(userId: string): Promise<any> {
     const user = await userRepository.getById(userId);
     if (!user) {
       throw new ApiError("User not found", 404);
