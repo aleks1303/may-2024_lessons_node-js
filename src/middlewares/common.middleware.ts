@@ -19,28 +19,12 @@ class CommonMiddleware {
     };
   }
   public validateBody(validator: ObjectSchema) {
-    return (req: Request, res: Response, next: NextFunction) => {
+    return async (req: Request, res: Response, next: NextFunction) => {
       try {
-        const dto = req.body;
-        if (!dto.name || dto.name.length < 3) {
-          throw new ApiError(
-            "Name is required and should be minimum 3 symbols",
-            400,
-          );
-        }
-        if (!dto.email || !dto.email.includes("@") || dto.email.length < 3) {
-          throw new ApiError("Email is required", 400);
-        }
-        if (!dto.password || dto.password.length < 8) {
-          throw new ApiError(
-            "Password is required and should be minimum 8 symbols",
-            400,
-          );
-        }
-        req.body = dto;
+        req.body = await validator.validateAsync(req.body);
         next();
-      } catch (e) {
-        next(e);
+      } catch (e: any) {
+        next(new ApiError(e.ditails[0].message, 400));
       }
     };
   }
