@@ -16,7 +16,8 @@ class UserRepository {
   public async getById(userId: string): Promise<IUser | null> {
     return await User.findById(userId);
   }
-  public async getByEmail(email: string): Promise<IUser | null> {
+  public async getByEmail(email: string): Promise<IUser> {
+    // @ts-ignore
     return await User.findOne({ email });
   }
   public async updateUser(
