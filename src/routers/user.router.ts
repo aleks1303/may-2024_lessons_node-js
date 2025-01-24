@@ -19,9 +19,14 @@ router.get(
 );
 router.put(
   "/:userId",
+  commonMiddleWare.isIdValid("userId"),
   commonMiddleWare.validateBody(UserValidator.update),
   userController.updateUser,
 );
-router.delete("/:userId", userController.deleteUser);
+router.delete(
+  "/:userId",
+  commonMiddleWare.isIdValid("userId"),
+  userController.deleteUser,
+);
 
 export const userRouter = router;

@@ -24,7 +24,7 @@ class CommonMiddleware {
         req.body = await validator.validateAsync(req.body);
         next();
       } catch (e: any) {
-        next(new ApiError(e.ditails[0].message, 400));
+        next(new ApiError(e.message, 400));
       }
     };
   }
