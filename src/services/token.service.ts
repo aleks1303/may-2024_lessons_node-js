@@ -3,6 +3,7 @@ import * as jwt from "jsonwebtoken";
 import { config } from "../configs/config";
 import { ApiError } from "../errors/api-error";
 import { ITokenPair, ITokenPayload } from "../interfaces/token.interface";
+import {TokenTypeEnum} from "../enums/token-type.enum";
 
 class TokenService {
   public generateTokens(payload: ITokenPayload): ITokenPair {
@@ -19,7 +20,7 @@ class TokenService {
       refreshToken,
     };
   }
-  public verifyToken(token: string, type: "access" | "refresh") {
+  public verifyToken(token: string, type: TokenTypeEnum) {
     try {
       let secret: string;
 

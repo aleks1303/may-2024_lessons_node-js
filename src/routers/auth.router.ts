@@ -1,6 +1,7 @@
 import { Router } from "express";
 
 import { authController } from "../controllers/auth.controller";
+import { authMiddleWare } from "../middlewares/auth.middleware";
 import { commonMiddleWare } from "../middlewares/common.middleware";
 import { UserValidator } from "../validators/user.validator";
 
@@ -13,8 +14,13 @@ router.post(
 
 router.post(
   "/sign-in",
-  // commonMiddleWare.validateBody(UserValidator.create),
+  commonMiddleWare.validateBody(UserValidator.login),
   authController.signIn,
+);
+router.post(
+  "/refresh",
+  authMiddleWare.checkRefreshToken,
+  authController.refresh,
 );
 
 export const authRouter = router;

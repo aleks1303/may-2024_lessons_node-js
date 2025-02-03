@@ -7,12 +7,6 @@ class UserService {
   public async getList(): Promise<IUser[]> {
     return await userRepository.getList();
   }
-  // create перенесено в auth.service
-  // public async create(dto: IUserCreateDto): Promise<IUser> {
-  //   await this.isEmailUnique(dto.email);
-  //   const password = await passwordService.hashPassword(dto.password);
-  //   return await userRepository.create({ ...dto, password });
-  // }
   public async getMe(tokenPayload: ITokenPayload): Promise<IUser> {
     const user = await userRepository.getById(tokenPayload.userId);
     if (!user) {
