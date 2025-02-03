@@ -25,7 +25,8 @@ class UserController {
   // }
   public async getMe(req: Request, res: Response, next: NextFunction) {
     try {
-      const tokenPayload = req.res?.locals.tokenPayload as ITokenPayload;
+      // @ts-ignore
+      const tokenPayload = req.res.locals.tokenPayload as ITokenPayload;
       const result = await userService.getMe(tokenPayload);
       res.status(200).json(result);
     } catch (e) {
@@ -34,7 +35,8 @@ class UserController {
   }
   public async updateMe(req: Request, res: Response, next: NextFunction) {
     try {
-      const tokenPayload = req.res?.locals.tokenPayload as ITokenPayload;
+      // @ts-ignore
+      const tokenPayload = req.res.locals.tokenPayload as ITokenPayload;
       const dto = req.body as IUserCreateDto;
       const result = await userService.updateMe(tokenPayload, dto);
       res.status(201).json(result);
@@ -44,7 +46,8 @@ class UserController {
   }
   public async deleteMe(req: Request, res: Response, next: NextFunction) {
     try {
-      const tokenPayload = req.res?.locals.tokenPayload as ITokenPayload;
+      // @ts-ignore
+      const tokenPayload = req.res.locals.tokenPayload as ITokenPayload;
       await userService.deleteMe(tokenPayload);
       res.sendStatus(204);
     } catch (e) {

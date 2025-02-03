@@ -23,11 +23,12 @@ class UserService {
   public async updateMe(
     tokenPayload: ITokenPayload,
     dto: IUserUpdateDto,
-  ): Promise<IUser | null> {
+  ): Promise<IUser> {
     const user = await userRepository.getById(tokenPayload.userId);
     if (!user) {
       throw new ApiError("User not found", 404);
     }
+    // @ts-ignore
     return await userRepository.updateUser(user._id, dto);
   }
   public async deleteMe(tokenPayload: ITokenPayload): Promise<any> {
